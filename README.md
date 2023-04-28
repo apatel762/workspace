@@ -26,7 +26,7 @@ distrobox assemble rm
 
 ## Extras
 
-Change the `.desktop` file so that you always enter your custom home directory, instead of ending up in the host home directory.
+Change the `Exec` line in the `.desktop` file in `~/.local/share/applications` so that you always enter your custom home directory, instead of ending up in the host home directory.
 
 ```ini
 [Desktop Entry]
@@ -43,7 +43,13 @@ TryExec=/var/home/apatel/.local/bin/distrobox
 Type=Application
 ```
 
-Note the `--no-workdir` on the `Exec` line.
+(The `--no-workdir` parameter is what you've got to add.)
+
+And then update the desktop entry database using:
+
+```bash
+update-desktop-database ~/.local/share/applications
+```
 
 ## Attribution
 
