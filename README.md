@@ -28,7 +28,7 @@ distrobox assemble rm
 
 Change the `.desktop` file so that you always enter your custom home directory, instead of ending up in the host home directory.
 
-```toml
+```ini
 [Desktop Entry]
 Name=Workspace
 GenericName=Terminal entering Workspace
