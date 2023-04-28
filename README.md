@@ -24,6 +24,27 @@ When you're done, you can use this command to destroy the workspace container.
 distrobox assemble rm
 ```
 
+## Extras
+
+Change the `.desktop` file so that you always enter your custom home directory, instead of ending up in the host home directory.
+
+```toml
+[Desktop Entry]
+Name=Workspace
+GenericName=Terminal entering Workspace
+Comment=Terminal entering Workspace
+Categories=Distrobox;System;Utility
+Exec=/var/home/apatel/.local/bin/distrobox enter Workspace --no-workdir
+Icon=/var/home/apatel/.local/share/icons/distrobox/alpine.png
+Keywords=distrobox;
+NoDisplay=false
+Terminal=true
+TryExec=/var/home/apatel/.local/bin/distrobox
+Type=Application
+```
+
+Note the `--no-workdir` on the `Exec` line.
+
 ## Attribution
 
 This project is derived from [boxkit](https://github.com/ublue-os/boxkit).
