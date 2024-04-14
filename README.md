@@ -4,7 +4,11 @@ Container image for my dev workspace.
 
 ## Usage
 
-tbd
+Run
+
+```bash
+distrobox create --image ghcr.io/apatel762/workspace workspace
+```
 
 ## Verification
 

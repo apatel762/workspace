@@ -8,7 +8,6 @@ LABEL com.github.containers.toolbox="true" \
 # `distrobox-host-exec` will detect that it has been symlinked to
 # and it will execute the linking program on the host machine.
 RUN \
-    ln -fs /bin/sh /usr/bin/sh && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree
