@@ -16,4 +16,4 @@ RUN \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/keepassxc-cli && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open
