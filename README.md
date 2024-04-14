@@ -7,7 +7,7 @@ Container image for my dev workspace.
 Run
 
 ```bash
-distrobox create --image ghcr.io/apatel762/workspace workspace
+distrobox create --pull --image ghcr.io/apatel762/workspace workspace
 ```
 
 To cleanup
