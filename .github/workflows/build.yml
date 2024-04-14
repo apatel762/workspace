@@ -1,55 +1,102 @@
-name: Create and publish a container image
+name: CI
+
+# -------------------------------------------------------------------
+# - This workflow was copied from 'apatel762/workstation' verbatim. -
+# - The only difference is that we do not have a cron trigger.      -
+# -------------------------------------------------------------------
+
+#
+# The various ${{ github.xxx }} variables are described here:
+# https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
+#
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - master
-    paths-ignore:
-      - '**/README.md'
-      - LICENSE
-      - distrobox.ini
-
-env:
-  IMAGE_REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  pull_request: {}
 
 jobs:
-  build-and-push-image:
-    name: Build and push the container image
+  ci:
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
       packages: write
 
-    strategy:
-      fail-fast: false
+    # ------------------------
+    # - BEGIN PIPELINE STEPS -
+    # ------------------------
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Log in to the container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.IMAGE_REGISTRY }}
+    - name: Check out the repo
+      uses: actions/checkout@v4
+
+    # -----------------------------------------------------------------
+    # Verify that the image successfully builds.
+
+    - name: Build image
+      id: build_image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        containerfiles: |
+          ./Containerfile
+        image: "ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}"
+
+    - name: Output of image build
+      if: github.event_name != 'pull_request'
+      run: |
+        echo "${{ toJSON(steps.build_image.outputs) }}"
+
+    # -----------------------------------------------------------------
+    # Publish the image. ('master' only)
+ 
+    - name: Log in to GitHub Container Registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Push to GitHub Container Registry
+      uses: Wandalen/wretry.action@v3.3.0
+      id: push_to_registry
+      if: github.event_name != 'pull_request'
+      env:
+        REGISTRY_USER: ${{ github.actor }}
+        REGISTRY_PASSWORD: ${{ github.token }}
+      with:
+        action: redhat-actions/push-to-registry@v2
+        attempt_limit: 3
+        attempt_delay: 15000
+        with: |
+          tags: ${{ steps.build_image.outputs.image-with-tag }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for the container
-        uses: docker/metadata-action@v4
-        id: meta
-        with:
-          images: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
+    - name: Output of image publish
+      if: github.event_name != 'pull_request'
+      run: |
+        echo "${{ toJSON(steps.push_to_registry.outputs) }}"
 
-      - name: Build and push container image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: Containerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+    # -----------------------------------------------------------------
+    # Sign the image. ('master' only)
+
+    - name: Set up cosign
+      uses: sigstore/cosign-installer@v3.5.0
+      if: github.event_name != 'pull_request'
+
+    - name: Sign container image
+      if: github.event_name != 'pull_request'
+      run: |
+        cosign sign -y --key env://KEY ${{ steps.build_image.outputs.image }}@${TAGS}
+      env:
+        TAGS: ${{ steps.push_to_registry.outputs.outputs && fromJSON(steps.push_to_registry.outputs.outputs).digest }}
+        KEY: "${{ secrets.COSIGN_PRIVATE_KEY }}"
+        COSIGN_PASSWORD: "${{ secrets.COSIGN_PRIVATE_KEY_PASSWORD }}"
+
+    # ----------------------
+    # - END PIPELINE STEPS -
+    # ----------------------
