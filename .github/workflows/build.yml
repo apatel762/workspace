@@ -1,10 +1,5 @@
 name: CI
 
-# -------------------------------------------------------------------
-# - This workflow was copied from 'apatel762/workstation' verbatim. -
-# - The only difference is that we do not have a cron trigger.      -
-# -------------------------------------------------------------------
-
 #
 # The various ${{ github.xxx }} variables are described here:
 # https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
@@ -15,6 +10,8 @@ on:
     branches:
       - master
   pull_request: {}
+  schedule:
+    - cron: '30 2 * * TUE'  # build every Tuesday at 2:30am
 
 jobs:
   ci:
