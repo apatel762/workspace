@@ -5,6 +5,10 @@ LABEL com.github.containers.toolbox="true" \
       summary="Arjun's terminal workspace container" \
       maintainer="relay-git-1LKQ1GqLp0Nn4@aspatel.com"
 
+RUN pacman -Syu --noconfirm \
+      chezmoi \
+      neovim
+
 # `distrobox-host-exec` will detect that it has been symlinked to
 # and it will execute the linking program on the host machine.
 RUN \
