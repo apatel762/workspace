@@ -28,7 +28,8 @@ RUN dnf install -y \
     neovim \
     zoxide \
     fzf \
-    lsd
+    lsd \
+    ranger
 
 # Install stuff that I rarely use
 RUN dnf install -y \
