@@ -24,7 +24,8 @@ RUN dnf install -y \
     python \
     pip \
     pinentry \
-    pinentry-gnome3
+    pinentry-gnome3 \
+    neovim
 
 # Install stuff that I rarely use
 RUN dnf install -y \
