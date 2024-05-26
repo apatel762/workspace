@@ -7,7 +7,8 @@ LABEL com.github.containers.toolbox="true" \
 
 RUN pacman -Syu --noconfirm \
       chezmoi \
-      neovim
+      neovim \
+      fish
 
 # `distrobox-host-exec` will detect that it has been symlinked to
 # and it will execute the linking program on the host machine.
