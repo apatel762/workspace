@@ -42,6 +42,8 @@ RUN dnf install -y \
 # Install `chezmoi` (necessary for config management)
 RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/bin
 
+COPY usr /usr
+
 # `distrobox-host-exec` will detect that it has been symlinked to
 # and it will execute the linking program on the host machine.
 RUN \
