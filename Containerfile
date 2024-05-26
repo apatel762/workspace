@@ -25,7 +25,9 @@ RUN dnf install -y \
     pip \
     pinentry \
     pinentry-gnome3 \
-    neovim
+    neovim \
+    zoxide \
+    fzf
 
 # Install stuff that I rarely use
 RUN dnf install -y \
@@ -39,6 +41,10 @@ RUN dnf install -y \
     borgbackup \
     tmux \
     qrencode
+
+# Delete stuff that I don't want to have
+RUN dnf remove -y \
+    dconf
 
 # Install `chezmoi` (necessary for config management)
 RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/bin
