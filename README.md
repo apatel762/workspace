@@ -9,6 +9,7 @@ Run
 ```bash
 podman pull ghcr.io/apatel762/workspace:latest  # optional
 toolbox create --image ghcr.io/apatel762/workspace workspace
+toolbox enter workspace
 ```
 
 To cleanup
