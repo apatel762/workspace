@@ -30,7 +30,6 @@ RUN dnf install -y \
 RUN dnf install -y \
     pandoc \
     openssl \
-    openssl1.1-devel.x86_64 \
     java \
     pipx \
     sshpass \
