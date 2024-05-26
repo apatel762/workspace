@@ -29,7 +29,8 @@ RUN dnf install -y \
     zoxide \
     fzf \
     lsd \
-    ranger
+    ranger \
+    bat
 
 # Install stuff that I rarely use
 RUN dnf install -y \
