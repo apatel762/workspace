@@ -27,7 +27,8 @@ RUN dnf install -y \
     pinentry-gnome3 \
     neovim \
     zoxide \
-    fzf
+    fzf \
+    lsd
 
 # Install stuff that I rarely use
 RUN dnf install -y \
