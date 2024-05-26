@@ -7,13 +7,14 @@ Container image for my dev workspace.
 Run
 
 ```bash
-distrobox create --pull --image ghcr.io/apatel762/workspace workspace
+podman pull ghcr.io/apatel762/workspace:latest  # optional
+toolbox create --image ghcr.io/apatel762/workspace workspace
 ```
 
 To cleanup
 
 ```bash
-distrobox rm --force workspace
+toolbox rm --force workspace
 ```
 
 ## Verification
