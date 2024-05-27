@@ -43,7 +43,8 @@ RUN dnf install -y \
     p7zip \
     borgbackup \
     tmux \
-    qrencode
+    qrencode \
+    jq
 
 # Delete stuff that I don't want to have
 RUN dnf remove -y \
