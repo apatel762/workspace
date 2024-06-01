@@ -64,4 +64,5 @@ RUN \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/keepassxc-cli && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/xdg-open && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/notify-send && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/dconf
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/dconf && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/gnome-extensions
