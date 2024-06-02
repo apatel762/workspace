@@ -44,7 +44,8 @@ RUN dnf install -y \
     borgbackup \
     tmux \
     qrencode \
-    jq
+    jq \
+    shellcheck
 
 # Delete stuff that I don't want to have
 RUN dnf remove -y \
