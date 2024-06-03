@@ -69,4 +69,5 @@ RUN \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/gnome-extensions && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/nmcli && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/wg && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/wg-quick
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/wg-quick && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/gsettings
