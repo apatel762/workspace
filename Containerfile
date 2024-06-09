@@ -70,4 +70,5 @@ RUN \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/nmcli && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/wg && \
     ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/wg-quick && \
-    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/gsettings
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/gsettings && \
+    ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/ykman
