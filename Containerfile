@@ -18,7 +18,7 @@ RUN dnf install -y ${RPM_FUSION_FREE} \
 
 # Install stuff that I actively use
 RUN dnf install -y \
-    "@Development Tools" \
+    @development-tools \
     fish \
     pip \
     pinentry \
