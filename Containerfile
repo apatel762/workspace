@@ -21,7 +21,6 @@ RUN dnf install -y ${RPM_FUSION_FREE} \
 RUN dnf install -y \
     "@Development Tools" \
     fish \
-    python \
     pip \
     pinentry \
     pinentry-gnome3 \
