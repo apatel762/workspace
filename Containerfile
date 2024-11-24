@@ -1,4 +1,4 @@
-ARG FEDORA_VERSION=40
+ARG FEDORA_VERSION=41
 
 FROM registry.fedoraproject.org/fedora-toolbox:${FEDORA_VERSION}
 
@@ -9,8 +9,7 @@ LABEL com.github.containers.toolbox="true" \
 
 ARG FEDORA_VERSION
 ARG RPM_FUSION_FREE=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_VERSION}.noarch.rpm
-ARG RPM_FUSION_NONFREE=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_VERSION}.noarch.rpm
-
+ARG RPM_FUSION_NONFREE=https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VERSION}.noarch.rpm
 
 # Add RPM Fusion repos
 RUN dnf install -y ${RPM_FUSION_FREE} \
@@ -19,9 +18,8 @@ RUN dnf install -y ${RPM_FUSION_FREE} \
 
 # Install stuff that I actively use
 RUN dnf install -y \
-    "@Development Tools" \
+    @development-tools \
     fish \
-    python \
     pip \
     pinentry \
     pinentry-gnome3 \
