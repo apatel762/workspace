@@ -1,4 +1,4 @@
-ARG FEDORA_VERSION=40
+ARG FEDORA_VERSION=41
 
 FROM registry.fedoraproject.org/fedora-toolbox:${FEDORA_VERSION}
 
