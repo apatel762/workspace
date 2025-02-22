@@ -36,6 +36,7 @@ RUN dnf install -y \
     pandoc \
     openssl \
     java \
+    javac \
     pipx \
     sshpass \
     ffmpeg \
