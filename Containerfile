@@ -28,7 +28,8 @@ RUN dnf install -y \
     fzf \
     lsd \
     ranger \
-    bat
+    bat \
+    direnv
 
 # Install stuff that I rarely use
 RUN dnf install -y \
