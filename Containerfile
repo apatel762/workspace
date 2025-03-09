@@ -45,7 +45,9 @@ RUN dnf install -y \
     tmux \
     qrencode \
     jq \
-    shellcheck
+    shellcheck \
+    gum \
+    lftp
 
 # Delete stuff that I don't want to have
 RUN dnf remove -y \
